@@ -33,9 +33,24 @@ DumbWareIO is a collection of self-hosted applications designed for simplicity a
    ```
 
 2. **Modify Configuration:**
-   - Replace `YOUR_PORT_HERE` with the desired ports.
-   - Replace `/path/to/your/...` with actual host paths.
-   - Set any necessary PINs in the `environment` section of `docker-compose.yml`.
+   - This is an entirely optional step, rename env to .env
+   - Modify the following variables in .envx
+
+  | Variable             | Default                   |
+  |----------------------|---------------------------|
+  | DUMB_PIN             | (nothing)                 |
+  | DUMBBUDGET_PORT      | 3333                      |
+  | DUMBBUDGET_DATA_PATH | /opt/dumbsuite/dumbbudget |
+  | DUMBDO_PORT          | 3334                      |
+  | DUMBDO_DATA_PATH     | /opt/dumbsuite/dumbdo     |
+  | DUMBDROP_PORT        | 3335                      |
+  | DUMBDROP_DATA_PATH   | /opt/dumbsuite/dumbdrop   |
+  | DUMBPAD_PORT         | 3336                      |
+  | DUMBPAD_DATA_PATH    | /opt/dumbsuite/dumbpad    |
+  | DUMBKAN_PORT         | 3337                      |
+  | DUMBKAN_DATA_PATH    | /opt/dumbsuite/dumbkan    |
+
+   - Note that this is a very dumb setup. A less dumber setup would remove ports and configure networks for better isolation.
 
 3. **Run the Services:**
    ```sh
@@ -53,6 +68,13 @@ DumbWareIO is a collection of self-hosted applications designed for simplicity a
    docker-compose up -d
    ```
 
+6. **Use the Services:**
+  - DumbBudget can be accessed from http://localhost:3333
+  - DumbDo can be accessed from http://localhost:3334
+  - DumbDrop can be accessed from http://localhost:3335
+  - DumbPad can be accessed from http://localhost:3336
+  - DumbKan can be accessed from http://localhost:3337
+
 ## Troubleshooting
 
 - Check container logs:
@@ -66,4 +88,3 @@ DumbWareIO is a collection of self-hosted applications designed for simplicity a
 For more details, visit [DumbWareIO](https://dumbware.io).
 To support our projects, please consider donating at [Buy Me a Coffee](https://buymeacoffee.com/dumbware).
 And as always, join the community at [Discord](https://dumbware.io/discord)!
-

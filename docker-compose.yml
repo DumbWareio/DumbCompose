@@ -1,47 +1,99 @@
-version: "3.8"
-
 services:
   dumbbudget:
     image: dumbwareio/dumbbudget:latest
+    container_name: dumbbudget
+    restart: unless-stopped
+    networks:
+      - dumb-net
     ports:
-      - "YOUR_PORT_HERE:3000"
+      - ${DUMBBUDGET_PORT:-3333}:3000
     volumes:
-      - /path/to/your/dumbbudget/data:/app/data
+      - ${DUMBBUDGET_DATA_PATH:-/opt/dumbsuite/dumbbudget}:/app/data
     environment:
-      - DUMBBUDGET_PIN=
+      - DUMBBUDGET_PIN=${DUMB_PIN:-}
+    healthcheck:
+      test: wget --spider -q  http://127.0.0.1:3000
+      start_period: 20s
+      interval: 20s
+      timeout: 5s
+      retries: 3
 
   dumbdo:
     image: dumbwareio/dumbdo:latest
+    container_name: dumbdo
+    restart: unless-stopped
+    networks:
+      - dumb-net
     ports:
-      - "YOUR_PORT_HERE:3000"
+      - ${DUMBDO_PORT:-3334}:3000
     volumes:
-      - /path/to/your/dumbdo/data:/app/data
+      - ${DUMBDO_DATA_PATH:-/opt/dumbsuite/dumbdo}:/app/data
     environment:
-      - DUMBDO_PIN=
+      - DUMBDO_PIN=${DUMB_PIN:-}
+    #healthcheck:
+    #  test: wget --spider -q  http://127.0.0.1:3000
+    #  start_period: 20s
+    #  interval: 20s
+    #  timeout: 5s
+    #  retries: 3
 
   dumbdrop:
     image: dumbwareio/dumbdrop:latest
+    container_name: dumbdrop
+    restart: unless-stopped
+    networks:
+      - dumb-net
     ports:
-      - "YOUR_PORT_HERE:3000"
+      - ${DUMBDROP_PORT:-3335}:3000
     volumes:
-      - /path/to/your/dumbdrop/uploads:/app/uploads
+      - ${DUMBDROP_DATA_PATH:-/opt/dumbsuite/dumbdrop}:/app/data
     environment:
-      - DUMBDROP_PIN=
+      - DUMBDROP_PIN=${DUMB_PIN:-}
+    healthcheck:
+      test: wget --spider -q  http://127.0.0.1:3000
+      start_period: 20s
+      interval: 20s
+      timeout: 5s
+      retries: 3
 
   dumbpad:
     image: dumbwareio/dumbpad:latest
+    container_name: dumbpad
+    restart: unless-stopped
+    networks:
+      - dumb-net
     ports:
-      - "YOUR_PORT_HERE:3000"
+      - ${DUMBPAD_PORT:-3336}:3000
     volumes:
-      - /path/to/your/dumbpad/data:/app/data
+      - ${DUMBPAD_DATA_PATH:-/opt/dumbsuite/dumbpad}:/app/data
     environment:
-      - DUMBPAD_PIN=
+      - DUMBPAD_PIN=${DUMB_PIN:-}
+    #healthcheck:
+    #  test: wget --spider -q  http://127.0.0.1:3000
+    #  start_period: 20s
+    #  interval: 20s
+    #  timeout: 5s
+    #  retries: 3
 
   dumbkan:
     image: dumbwareio/dumbkan:latest
+    container_name: dumbkan
+    restart: unless-stopped
+    networks:
+      - dumb-net
     ports:
-      - "YOUR_PORT_HERE:3000"
+      - ${DUMBKAN_PORT:-3337}:3000
     volumes:
-      - /path/to/your/dumbkan/data:/app/data
+      - ${DUMBKAN_DATA_PATH:-/opt/dumbsuite/dumbkan}:/app/data
     environment:
-      - DUMBKAN_PIN=
+      - DUMBKAN_PIN=${DUMB_PIN:-}
+    healthcheck:
+      test: wget --spider -q  http://127.0.0.1:3000
+      start_period: 20s
+      interval: 20s
+      timeout: 5s
+      retries: 3
+
+networks:
+  dumb-net:
+    name: dumb-net
