@@ -3,8 +3,10 @@ services:
     image: dumbwareio/dumbbudget:latest
     container_name: dumbbudget
     restart: unless-stopped
+    networks:
+      - dumb-net
     ports:
-      - ${DUMB_PORT:-3000}:3000
+      - ${DUMBBUDGET_PORT:-3333}:3000
     volumes:
       - ${DUMBBUDGET_DATA_PATH:-/opt/dumbsuite/dumbbudget}:/app/data
     environment:
@@ -14,8 +16,10 @@ services:
     image: dumbwareio/dumbdo:latest
     container_name: dumbdo
     restart: unless-stopped
+    networks:
+      - dumb-net
     ports:
-      - ${DUMB_PORT:-3000}:3000
+      - ${DUMBDO_PORT:-3334}:3000
     volumes:
       - ${DUMBDO_DATA_PATH:-/opt/dumbsuite/dumbdo}:/app/data
     environment:
@@ -25,8 +29,10 @@ services:
     image: dumbwareio/dumbdrop:latest
     container_name: dumbdrop
     restart: unless-stopped
+    networks:
+      - dumb-net
     ports:
-      - ${DUMB_PORT:-3000}:3000
+      - ${DUMBDROP_PORT:-3335}:3000
     volumes:
       - ${DUMBDROP_DATA_PATH:-/opt/dumbsuite/dumbdrop}:/app/data
     environment:
@@ -36,8 +42,10 @@ services:
     image: dumbwareio/dumbpad:latest
     container_name: dumbpad
     restart: unless-stopped
+    networks:
+      - dumb-net
     ports:
-      - ${DUMB_PORT:-3000}:3000
+      - ${DUMBPAD_PORT:-3336}:3000
     volumes:
       - ${DUMBPAD_DATA_PATH:-/opt/dumbsuite/dumbpad}:/app/data
     environment:
@@ -47,9 +55,15 @@ services:
     image: dumbwareio/dumbkan:latest
     container_name: dumbkan
     restart: unless-stopped
+    networks:
+      - dumb-net
     ports:
-      - ${DUMB_PORT:-3000}:3000
+      - ${DUMBKAN_PORT:-3337}:3000
     volumes:
       - ${DUMBKAN_DATA_PATH:-/opt/dumbsuite/dumbkan}:/app/data
     environment:
       - DUMBKAN_PIN=${DUMB_PIN:-}
+
+networks:
+  dumb-net:
+    name: dumb-net

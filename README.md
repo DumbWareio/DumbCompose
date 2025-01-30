@@ -38,12 +38,16 @@ DumbWareIO is a collection of self-hosted applications designed for simplicity a
 
   | Variable             | Default                   |
   |----------------------|---------------------------|
-  | DUMB_PORT            | 3000                      |
   | DUMB_PIN             | (nothing)                 |
+  | DUMBBUDGET_PORT      | 3333                      |
   | DUMBBUDGET_DATA_PATH | /opt/dumbsuite/dumbbudget |
+  | DUMBDO_PORT          | 3334                      |
   | DUMBDO_DATA_PATH     | /opt/dumbsuite/dumbdo     |
+  | DUMBDROP_PORT        | 3335                      |
   | DUMBDROP_DATA_PATH   | /opt/dumbsuite/dumbdrop   |
+  | DUMBPAD_PORT         | 3336                      |
   | DUMBPAD_DATA_PATH    | /opt/dumbsuite/dumbpad    |
+  | DUMBKAN_PORT         | 3337                      |
   | DUMBKAN_DATA_PATH    | /opt/dumbsuite/dumbkan    |
 
   - Modify dumbcompose.yml if you want a different pin per dumb app
