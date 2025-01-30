@@ -2,6 +2,7 @@ services:
   dumbbudget:
     image: dumbwareio/dumbbudget:latest
     container_name: dumbbudget
+    restart: unless-stopped
     ports:
       - ${DUMB_PORT:-3000}:3000
     volumes:
@@ -11,6 +12,8 @@ services:
 
   dumbdo:
     image: dumbwareio/dumbdo:latest
+    container_name: dumbdo
+    restart: unless-stopped
     ports:
       - ${DUMB_PORT:-3000}:3000
     volumes:
@@ -20,6 +23,8 @@ services:
 
   dumbdrop:
     image: dumbwareio/dumbdrop:latest
+    container_name: dumbdrop
+    restart: unless-stopped
     ports:
       - ${DUMB_PORT:-3000}:3000
     volumes:
@@ -29,6 +34,8 @@ services:
 
   dumbpad:
     image: dumbwareio/dumbpad:latest
+    container_name: dumbpad
+    restart: unless-stopped
     ports:
       - ${DUMB_PORT:-3000}:3000
     volumes:
@@ -38,6 +45,8 @@ services:
 
   dumbkan:
     image: dumbwareio/dumbkan:latest
+    container_name: dumbkan
+    restart: unless-stopped
     ports:
       - ${DUMB_PORT:-3000}:3000
     volumes:
