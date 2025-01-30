@@ -1,0 +1,7 @@
+DUMB_PORT=3000
+DUMB_PIN=1234
+DUMBBUDGET_DATA_PATH=/opt/dumbsuite/dumbbudget
+DUMBDO_DATA_PATH=/opt/dumbsuite/dumbdo
+DUMBDROP_DATA_PATH=/opt/dumbsuite/dumbdrop
+DUMBPAD_DATA_PATH=/opt/dumbsuite/dumbpad
+DUMBKAN_DATA_PATH=/opt/dumbsuite/dumbkan

@@ -33,9 +33,20 @@ DumbWareIO is a collection of self-hosted applications designed for simplicity a
    ```
 
 2. **Modify Configuration:**
-   - Replace `YOUR_PORT_HERE` with the desired ports.
-   - Replace `/path/to/your/...` with actual host paths.
-   - Set any necessary PINs in the `environment` section of `docker-compose.yml`.
+   - Create a .env file in the same directory as the compose file, or optionally rename env to .env and use that
+   - Add the following variables if you need to:
+
+  | Variable             | Default                   |
+  |----------------------|---------------------------|
+  | DUMB_PORT            | 3000                      |
+  | DUMB_PIN             | (nothing)                 |
+  | DUMBBUDGET_DATA_PATH | /opt/dumbsuite/dumbbudget |
+  | DUMBDO_DATA_PATH     | /opt/dumbsuite/dumbdo     |
+  | DUMBDROP_DATA_PATH   | /opt/dumbsuite/dumbdrop   |
+  | DUMBPAD_DATA_PATH    | /opt/dumbsuite/dumbpad    |
+  | DUMBKAN_DATA_PATH    | /opt/dumbsuite/dumbkan    |
+
+  - Modify dumbcompose.yml if you want a different pin per dumb app
 
 3. **Run the Services:**
    ```sh
@@ -66,4 +77,3 @@ DumbWareIO is a collection of self-hosted applications designed for simplicity a
 For more details, visit [DumbWareIO](https://dumbware.io).
 To support our projects, please consider donating at [Buy Me a Coffee](https://buymeacoffee.com/dumbware).
 And as always, join the community at [Discord](https://dumbware.io/discord)!
-

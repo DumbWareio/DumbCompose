@@ -1,47 +1,46 @@
-version: "3.8"
-
 services:
   dumbbudget:
     image: dumbwareio/dumbbudget:latest
+    container_name: dumbbudget
     ports:
-      - "YOUR_PORT_HERE:3000"
+      - ${DUMB_PORT:-3000}:3000
     volumes:
-      - /path/to/your/dumbbudget/data:/app/data
+      - ${DUMBBUDGET_DATA_PATH:-/opt/dumbsuite/dumbbudget}:/app/data
     environment:
-      - DUMBBUDGET_PIN=
+      - DUMBBUDGET_PIN=${DUMB_PIN:-}
 
   dumbdo:
     image: dumbwareio/dumbdo:latest
     ports:
-      - "YOUR_PORT_HERE:3000"
+      - ${DUMB_PORT:-3000}:3000
     volumes:
-      - /path/to/your/dumbdo/data:/app/data
+      - ${DUMBDO_DATA_PATH:-/opt/dumbsuite/dumbdo}:/app/data
     environment:
-      - DUMBDO_PIN=
+      - DUMBDO_PIN=${DUMB_PIN:-}
 
   dumbdrop:
     image: dumbwareio/dumbdrop:latest
     ports:
-      - "YOUR_PORT_HERE:3000"
+      - ${DUMB_PORT:-3000}:3000
     volumes:
-      - /path/to/your/dumbdrop/uploads:/app/uploads
+      - ${DUMBDROP_DATA_PATH:-/opt/dumbsuite/dumbdrop}:/app/data
     environment:
-      - DUMBDROP_PIN=
+      - DUMBDROP_PIN=${DUMB_PIN:-}
 
   dumbpad:
     image: dumbwareio/dumbpad:latest
     ports:
-      - "YOUR_PORT_HERE:3000"
+      - ${DUMB_PORT:-3000}:3000
     volumes:
-      - /path/to/your/dumbpad/data:/app/data
+      - ${DUMBPAD_DATA_PATH:-/opt/dumbsuite/dumbpad}:/app/data
     environment:
-      - DUMBPAD_PIN=
+      - DUMBPAD_PIN=${DUMB_PIN:-}
 
   dumbkan:
     image: dumbwareio/dumbkan:latest
     ports:
-      - "YOUR_PORT_HERE:3000"
+      - ${DUMB_PORT:-3000}:3000
     volumes:
-      - /path/to/your/dumbkan/data:/app/data
+      - ${DUMBKAN_DATA_PATH:-/opt/dumbsuite/dumbkan}:/app/data
     environment:
-      - DUMBKAN_PIN=
+      - DUMBKAN_PIN=${DUMB_PIN:-}
