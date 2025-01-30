@@ -12,7 +12,7 @@ services:
     environment:
       - DUMBBUDGET_PIN=${DUMB_PIN:-}
     healthcheck:
-      test: ["CMD-SHELL", "curl --fail http://localhost:${DUMBBUDGET_PORT:-3333} || exit 1"]
+      test: wget --spider -q  http://127.0.0.1:3000
       start_period: 20s
       interval: 20s
       timeout: 5s
@@ -31,7 +31,7 @@ services:
     environment:
       - DUMBDO_PIN=${DUMB_PIN:-}
     healthcheck:
-      test: ["CMD-SHELL", "curl --fail http://localhost:${DUMBDO_PORT:-3333} || exit 1"]
+      test: wget --spider -q  http://127.0.0.1:3000
       start_period: 20s
       interval: 20s
       timeout: 5s
@@ -50,7 +50,7 @@ services:
     environment:
       - DUMBDROP_PIN=${DUMB_PIN:-}
     healthcheck:
-      test: ["CMD-SHELL", "curl --fail http://localhost:${DUMBDROP_PORT:-3333} || exit 1"]
+      test: wget --spider -q  http://127.0.0.1:3000
       start_period: 20s
       interval: 20s
       timeout: 5s
@@ -69,7 +69,7 @@ services:
     environment:
       - DUMBPAD_PIN=${DUMB_PIN:-}
     healthcheck:
-      test: ["CMD-SHELL", "curl --fail http://localhost:${DUMBPAD_PORT:-3333} || exit 1"]
+      test: wget --spider -q  http://127.0.0.1:3000
       start_period: 20s
       interval: 20s
       timeout: 5s
@@ -88,7 +88,7 @@ services:
     environment:
       - DUMBKAN_PIN=${DUMB_PIN:-}
     healthcheck:
-      test: ["CMD-SHELL", "curl --fail http://localhost:${DUMBKAN_PORT:-3333} || exit 1"]
+      test: wget --spider -q  http://127.0.0.1:3000
       start_period: 20s
       interval: 20s
       timeout: 5s
