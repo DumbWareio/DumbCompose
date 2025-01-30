@@ -33,8 +33,8 @@ DumbWareIO is a collection of self-hosted applications designed for simplicity a
    ```
 
 2. **Modify Configuration:**
-   - Create a .env file in the same directory as the compose file, or optionally rename env to .env and use that
-   - Add the following variables if you need to:
+   - This is an entirely optional step, rename env to .env
+   - Modify the following variables in .envx
 
   | Variable             | Default                   |
   |----------------------|---------------------------|
@@ -50,7 +50,7 @@ DumbWareIO is a collection of self-hosted applications designed for simplicity a
   | DUMBKAN_PORT         | 3337                      |
   | DUMBKAN_DATA_PATH    | /opt/dumbsuite/dumbkan    |
 
-  - Modify dumbcompose.yml if you want a different pin per dumb app
+   - Note that this is a very dumb setup. A less dumber setup would remove ports and configure networks for better isolation.
 
 3. **Run the Services:**
    ```sh
@@ -67,6 +67,13 @@ DumbWareIO is a collection of self-hosted applications designed for simplicity a
    docker-compose pull
    docker-compose up -d
    ```
+
+6. **Use the Services:**
+  - DumbBudget can be accessed from http://localhost:3333
+  - DumbDo can be accessed from http://localhost:3334
+  - DumbDrop can be accessed from http://localhost:3335
+  - DumbPad can be accessed from http://localhost:3336
+  - DumbKan can be accessed from http://localhost:3337
 
 ## Troubleshooting
 
