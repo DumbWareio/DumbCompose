@@ -30,12 +30,12 @@ services:
       - ${DUMBDO_DATA_PATH:-/opt/dumbsuite/dumbdo}:/app/data
     environment:
       - DUMBDO_PIN=${DUMB_PIN:-}
-    healthcheck:
-      test: wget --spider -q  http://127.0.0.1:3000
-      start_period: 20s
-      interval: 20s
-      timeout: 5s
-      retries: 3
+    #healthcheck:
+    #  test: wget --spider -q  http://127.0.0.1:3000
+    #  start_period: 20s
+    #  interval: 20s
+    #  timeout: 5s
+    #  retries: 3
 
   dumbdrop:
     image: dumbwareio/dumbdrop:latest
@@ -68,12 +68,12 @@ services:
       - ${DUMBPAD_DATA_PATH:-/opt/dumbsuite/dumbpad}:/app/data
     environment:
       - DUMBPAD_PIN=${DUMB_PIN:-}
-    healthcheck:
-      test: wget --spider -q  http://127.0.0.1:3000
-      start_period: 20s
-      interval: 20s
-      timeout: 5s
-      retries: 3
+    #healthcheck:
+    #  test: wget --spider -q  http://127.0.0.1:3000
+    #  start_period: 20s
+    #  interval: 20s
+    #  timeout: 5s
+    #  retries: 3
 
   dumbkan:
     image: dumbwareio/dumbkan:latest
