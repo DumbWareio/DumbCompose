@@ -11,6 +11,12 @@ services:
       - ${DUMBBUDGET_DATA_PATH:-/opt/dumbsuite/dumbbudget}:/app/data
     environment:
       - DUMBBUDGET_PIN=${DUMB_PIN:-}
+    healthcheck:
+      test: ["CMD-SHELL", "curl --fail http://localhost:${DUMBBUDGET_PORT:-3333} || exit 1"]
+      start_period: 20s
+      interval: 20s
+      timeout: 5s
+      retries: 3
 
   dumbdo:
     image: dumbwareio/dumbdo:latest
@@ -24,6 +30,12 @@ services:
       - ${DUMBDO_DATA_PATH:-/opt/dumbsuite/dumbdo}:/app/data
     environment:
       - DUMBDO_PIN=${DUMB_PIN:-}
+    healthcheck:
+      test: ["CMD-SHELL", "curl --fail http://localhost:${DUMBDO_PORT:-3333} || exit 1"]
+      start_period: 20s
+      interval: 20s
+      timeout: 5s
+      retries: 3
 
   dumbdrop:
     image: dumbwareio/dumbdrop:latest
@@ -37,6 +49,12 @@ services:
       - ${DUMBDROP_DATA_PATH:-/opt/dumbsuite/dumbdrop}:/app/data
     environment:
       - DUMBDROP_PIN=${DUMB_PIN:-}
+    healthcheck:
+      test: ["CMD-SHELL", "curl --fail http://localhost:${DUMBDROP_PORT:-3333} || exit 1"]
+      start_period: 20s
+      interval: 20s
+      timeout: 5s
+      retries: 3
 
   dumbpad:
     image: dumbwareio/dumbpad:latest
@@ -50,6 +68,12 @@ services:
       - ${DUMBPAD_DATA_PATH:-/opt/dumbsuite/dumbpad}:/app/data
     environment:
       - DUMBPAD_PIN=${DUMB_PIN:-}
+    healthcheck:
+      test: ["CMD-SHELL", "curl --fail http://localhost:${DUMBPAD_PORT:-3333} || exit 1"]
+      start_period: 20s
+      interval: 20s
+      timeout: 5s
+      retries: 3
 
   dumbkan:
     image: dumbwareio/dumbkan:latest
@@ -63,6 +87,12 @@ services:
       - ${DUMBKAN_DATA_PATH:-/opt/dumbsuite/dumbkan}:/app/data
     environment:
       - DUMBKAN_PIN=${DUMB_PIN:-}
+    healthcheck:
+      test: ["CMD-SHELL", "curl --fail http://localhost:${DUMBKAN_PORT:-3333} || exit 1"]
+      start_period: 20s
+      interval: 20s
+      timeout: 5s
+      retries: 3
 
 networks:
   dumb-net:
