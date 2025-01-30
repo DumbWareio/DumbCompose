@@ -1,0 +1,47 @@
+version: "3.8"
+
+services:
+  dumbbudget:
+    image: dumbwareio/dumbbudget:latest
+    ports:
+      - "YOUR_PORT_HERE:3000"
+    volumes:
+      - /path/to/your/dumbbudget/data:/app/data
+    environment:
+      - DUMBBUDGET_PIN=
+
+  dumbdo:
+    image: dumbwareio/dumbdo:latest
+    ports:
+      - "YOUR_PORT_HERE:3000"
+    volumes:
+      - /path/to/your/dumbdo/data:/app/data
+    environment:
+      - DUMBDO_PIN=
+
+  dumbdrop:
+    image: dumbwareio/dumbdrop:latest
+    ports:
+      - "YOUR_PORT_HERE:3000"
+    volumes:
+      - /path/to/your/dumbdrop/uploads:/app/uploads
+    environment:
+      - DUMBDROP_PIN=
+
+  dumbpad:
+    image: dumbwareio/dumbpad:latest
+    ports:
+      - "YOUR_PORT_HERE:3000"
+    volumes:
+      - /path/to/your/dumbpad/data:/app/data
+    environment:
+      - DUMBPAD_PIN=
+
+  dumbkan:
+    image: dumbwareio/dumbkan:latest
+    ports:
+      - "YOUR_PORT_HERE:3000"
+    volumes:
+      - /path/to/your/dumbkan/data:/app/data
+    environment:
+      - DUMBKAN_PIN=
