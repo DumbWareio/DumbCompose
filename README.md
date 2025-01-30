@@ -86,5 +86,7 @@ DumbWareIO is a collection of self-hosted applications designed for simplicity a
 
 ---
 For more details, visit [DumbWareIO](https://dumbware.io).
+
 To support our projects, please consider donating at [Buy Me a Coffee](https://buymeacoffee.com/dumbware).
+
 And as always, join the community at [Discord](https://dumbware.io/discord)!
