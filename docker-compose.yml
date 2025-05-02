@@ -8,15 +8,19 @@ services:
     ports:
       - ${DUMBBUDGET_PORT:-3333}:3000
     volumes:
-      - ${DUMBBUDGET_DATA_PATH:-/opt/dumbsuite/dumbbudget}:/app/data
+      - ${DUMBBUDGET_DATA_PATH:-./dumbsuite/dumbbudget}:/app/data
     environment:
-      - DUMBBUDGET_PIN=${DUMB_PIN:-}
-    healthcheck:
-      test: wget --spider -q  http://127.0.0.1:3000
-      start_period: 20s
-      interval: 20s
-      timeout: 5s
-      retries: 3
+      DUMBBUDGET_PIN: ${DUMBBUDGET_PIN:-${DUMB_PIN:-}} # PIN to access the site
+      BASE_URL: ${DUMBBUDGET_BASE_URL:-http://localhost:3333} # URL to access the site
+      CURRENCY: ${DUMBBUDGET_CURRENCY:-USD} # Supported Currency Code: https://github.com/DumbWareio/DumbBudget?tab=readme-ov-file#supported-currencies
+      SITE_TITLE: ${DUMBBUDGET_SITE_TITLE:-DumbBudget} # Name to show on site
+      INSTANCE_NAME: ${DUMBBUDGET_INSTANCE_NAME:-} # Name of instance/account
+    # healthcheck:
+    #   test: wget --spider -q  http://127.0.0.1:3000
+    #   start_period: 20s
+    #   interval: 20s
+    #   timeout: 5s
+    #   retries: 3
 
   dumbdo:
     image: dumbwareio/dumbdo:latest
@@ -27,9 +31,11 @@ services:
     ports:
       - ${DUMBDO_PORT:-3334}:3000
     volumes:
-      - ${DUMBDO_DATA_PATH:-/opt/dumbsuite/dumbdo}:/app/data
+      - ${DUMBDO_DATA_PATH:-./dumbsuite/dumbdo}:/app/data
     environment:
-      - DUMBDO_PIN=${DUMB_PIN:-}
+      DUMBDO_PIN: ${DUMBDO_PIN:-${DUMB_PIN:-}}
+      DUMBDO_SITE_TITLE: ${DUMBDO_SITE_TITLE:-DumbDo} # Name to show on site
+      ALLOWED_ORIGINS: ${DUMBDO_ALLOWED_ORIGINS:-*} # Comma separated list of allowed origins for CORS
     #healthcheck:
     #  test: wget --spider -q  http://127.0.0.1:3000
     #  start_period: 20s
@@ -46,15 +52,19 @@ services:
     ports:
       - ${DUMBDROP_PORT:-3335}:3000
     volumes:
-      - ${DUMBDROP_DATA_PATH:-/opt/dumbsuite/dumbdrop}:/app/data
+      - ${DUMBDROP_DATA_PATH:-./dumbsuite/dumbdrop}:/app/uploads
     environment:
-      - DUMBDROP_PIN=${DUMB_PIN:-}
-    healthcheck:
-      test: wget --spider -q  http://127.0.0.1:3000
-      start_period: 20s
-      interval: 20s
-      timeout: 5s
-      retries: 3
+      DUMBDROP_PIN: ${DUMBDROP_PIN:-${DUMB_PIN:-}} # Optional PIN protection (leave empty to disable)
+      DUMBDROP_TITLE: ${DUMBDROP_TITLE:-DumbDrop} # The title shown in the web interface
+      MAX_FILE_SIZE: ${DUMBDROP_MAX_FILE_SIZE:-1024} # Maximum file size in MB
+      BASE_URL: ${DUMBDROP_BASE_URL:-http://localhost:3335} # The base URL for the application
+      AUTO_UPLOAD: false # Upload without clicking button
+    # healthcheck:
+    #   test: wget --spider -q  http://127.0.0.1:3000
+    #   start_period: 20s
+    #   interval: 20s
+    #   timeout: 5s
+    #   retries: 3
 
   dumbpad:
     image: dumbwareio/dumbpad:latest
@@ -65,9 +75,18 @@ services:
     ports:
       - ${DUMBPAD_PORT:-3336}:3000
     volumes:
-      - ${DUMBPAD_DATA_PATH:-/opt/dumbsuite/dumbpad}:/app/data
+      - ${DUMBPAD_DATA_PATH:-./dumbsuite/dumbpad}:/app/data
     environment:
-      - DUMBPAD_PIN=${DUMB_PIN:-}
+      SITE_TITLE: ${DUMBPAD_SITE_TITLE:-DumbPad} # The title shown in the web interface
+      DUMBPAD_PIN: ${DUMBPAD_PIN:-${DUMB_PIN:-}} # Optional PIN protection (leave empty to disable)
+      BASE_URL: ${DUMBPAD_BASE_URL:-http://localhost:3336} # The base URL for the application
+      ## (OPTIONAL)
+      ## Usage: Comma-separated list of urls: http://localhost:port,http://internalip:port,https://base.proxy.tld,https://authprovider.domain.tld
+      # ALLOWED_ORIGINS: ${DUMBPAD_ALLOWED_ORIGINS:-http://localhost:3000} # Comment out to allow all origins (*)
+      # LOCKOUT_TIME: ${DUMBPAD_LOCK_TIME:-15} # Customize pin lockout time (if empty, defaults to 15 in minutes)
+      # MAX_ATTEMPTS: ${DUMBPAD_MAX_ATTEMPTS:-5} # Customize pin max attempts (if empty, defaults to 5)
+      # COOKIE_MAX_AGE: ${DUMBPAD_COOKIE_MAX_AGE:-24} # Customize maximum age of cookies primarily used for pin verification (default 24) in hours
+      # PAGE_HISTORY_COOKIE_AGE: ${DUMBPAD_PAGE_HISTORY_COOKIE_AGE:-365} # Customize age of cookie to show the last notepad opened (default 365 | max 400) in days - shows default notepad on load if expired
     #healthcheck:
     #  test: wget --spider -q  http://127.0.0.1:3000
     #  start_period: 20s
@@ -84,15 +103,52 @@ services:
     ports:
       - ${DUMBKAN_PORT:-3337}:3000
     volumes:
-      - ${DUMBKAN_DATA_PATH:-/opt/dumbsuite/dumbkan}:/app/data
+      - ${DUMBKAN_DATA_PATH:-./dumbsuite/dumbkan}:/app/data
     environment:
-      - DUMBKAN_PIN=${DUMB_PIN:-}
-    healthcheck:
-      test: wget --spider -q  http://127.0.0.1:3000
-      start_period: 20s
-      interval: 20s
-      timeout: 5s
-      retries: 3
+      SITE_TITLE: ${DUMBKAN_TITLE:-DumbKan} # The title shown in the web interface
+      DUMBKAN_PIN: ${DUMBKAN_PIN:-${DUMB_PIN:-}}
+      BASE_URL: ${DUMBKAN_BASE_URL:-http://localhost:3337} # The base URL for the application
+    # healthcheck:
+    #   test: wget --spider -q  http://127.0.0.1:3000
+    #   start_period: 20s
+    #   interval: 20s
+    #   timeout: 5s
+    #   retries: 3
+  
+  dumbwhois:
+    image: dumbwareio/dumbwhois:latest
+    container_name: dumbwhois
+    restart: unless-stopped
+    networks:
+      - dumb-net
+    ports:
+      - ${DUMBWHOIS_PORT:-3338}:3000
+    environment:
+      - SITE_TITLE=${DUMBWHOIS_SITE_TITLE:-DumbWhois}
+      ## (Optional) Restrict origins - ex: https://subdomain.domain.tld,https://auth.proxy.tld,http://internalip:port' (empty/default is '*')
+      # - ALLOWED_ORIGINS=${DUMBWHOIS_ALLOWED_ORIGINS:-*}
+
+  dumbterm:
+    image: dumbwareio/dumbterm:latest
+    container_name: dumbterm
+    restart: unless-stopped
+    ports:
+      - ${DUMBTERM_PORT:-3339}:3000
+    networks:
+      - dumb-net
+    volumes:
+      - ${DUMBTERM_CONFIG:-./dumbsuite/dumbterm/config}:/root/.config
+      - ${DUMBTERM_DATA_DIR:-./dumbsuite/dumbterm/data}:/root/data
+    environment:
+      TZ: ${DUMBTERM_TZ:-America/Los_Angeles}
+      SITE_TITLE: ${DUMBTERM_SITE_TITLE:-DumbTerm}
+      DUMBTERM_PIN: ${DUMBTERM_PIN:-${DUMB_PIN:-}} # Optional PIN protection (leave empty to disable)
+      BASE_URL: ${DUMBTERM_BASE_URL:-http://localhost:3339}
+      ENABLE_STARSHIP: ${ENABLE_STARSHIP:-true}
+      LOCKOUT_TIME: ${DUMBTERM_LOCKOUT_TIME:-15} # Minutes
+      MAX_SESSION_AGE: ${DUMBTERM_MAX_SESSION_AGE:-24} # Hours - Session duration in hours before requiring re-authentication
+      # (OPTIONAL) - List of allowed origins for CORS
+      # ALLOWED_ORIGINS: ${DUMBTERM_ALLOWED_ORIGINS:-http://localhost:3339}
 
 networks:
   dumb-net:
